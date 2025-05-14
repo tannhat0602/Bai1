@@ -50,11 +50,11 @@ namespace Bai1.Models
         [StringLength(500)]
         public string? Description { get; set; }
 
-        public DateTime RequestDate { get; set; } = DateTime.UtcNow;
+        public DateTime RequestDate { get; set; } 
 
         public bool IsApproved { get; set; } = false;
 
-        public DateTime? ApprovalDate { get; set; }  = DateTime.UtcNow;
+        public DateTime? ApprovalDate { get; set; } 
         public string? ImagePath { get; set; }
     }
 }

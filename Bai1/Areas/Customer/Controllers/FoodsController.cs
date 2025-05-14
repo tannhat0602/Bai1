@@ -85,7 +85,7 @@ namespace Bai1.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
-                review.CreatedAt = DateTime.Now;
+                review.CreatedAt = DateTime.UtcNow;
                 review.UserId = _userManager.GetUserId(User); // Lấy ID user hiện tại
                 _context.FoodReviews.Add(review);
                 _context.SaveChanges();

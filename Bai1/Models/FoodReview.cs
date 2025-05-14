@@ -17,7 +17,7 @@ public class FoodReview
     [Required]
     public string Comment { get; set; }
 
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } 
 
     public int LikeCount { get; set; }
 

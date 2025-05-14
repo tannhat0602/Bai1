@@ -58,7 +58,7 @@ namespace Bai1.Areas.Admin.Controllers
             if (store == null) return NotFound();
 
             store.IsLocked = false;
-            store.UnlockDate = DateTime.Now.ToUniversalTime();
+            store.UnlockDate = DateTime.UtcNow;
             await _context.SaveChangesAsync();
 
             TempData["SuccessMessage"] = "Mở khoá cửa hàng thành công.";

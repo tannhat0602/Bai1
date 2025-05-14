@@ -24,6 +24,8 @@ namespace Bai1.Hubs
 
                 // Thêm Authorization header vào HttpClient
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+                _httpClient.DefaultRequestHeaders.Add("X-Title", "MyChatApp"); // hoặc tên app tùy chọn
+
 
                 // Kiểm tra header Authorization đã được thêm đúng chưa
                 Console.WriteLine($"Authorization header: {_httpClient.DefaultRequestHeaders.Authorization}");
