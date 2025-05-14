@@ -39,6 +39,13 @@ namespace Bai1.Models
                 .WithMany(f => f.Toppings)
                 .HasForeignKey(t => t.FoodId)
                 .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<FoodImage>()
+                .ToTable("foodimages");
+
+            modelBuilder.Entity<FoodImage>()
+                .Property(f => f.Url)
+                .HasColumnName("Url")
+                .HasColumnType("character varying");
         }
         public DbSet<UserCartItem> UserCartItems { get; set; }
 
