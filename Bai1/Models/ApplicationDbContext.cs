@@ -22,6 +22,8 @@ namespace Bai1.Models
         public DbSet<Topping> Toppings { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>().ToTable("categories"); // chữ thường
+
             base.OnModelCreating(modelBuilder);
 
             // Thiết lập mối quan hệ 1-nhiều giữa Food và Topping
