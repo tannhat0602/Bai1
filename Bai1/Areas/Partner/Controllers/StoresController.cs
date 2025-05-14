@@ -450,7 +450,7 @@ namespace Bai1.Controllers
             if (ModelState.IsValid)
             {
                 discountCode.StoreId = store.Id;
-                discountCode.CreatedAt = DateTime.Now.ToUniversalTime();
+                discountCode.CreatedAt = DateTime.UtcNow;
                 ;
                 _context.DiscountCodes.Add(discountCode);
                 await _context.SaveChangesAsync();
