@@ -49,7 +49,26 @@ namespace Bai1.Models
             modelBuilder.Entity<Order>()
                 .Property(o => o.Id)
                 .ValueGeneratedOnAdd(); // Đảm bảo Id tự động tăng và không nhận NULL
+            modelBuilder.Entity<PartnerRequest>(entity =>
+            {
+                entity.ToTable("PartnerRequests");
 
+                entity.Property(e => e.Id).HasColumnName("Id");
+                entity.Property(e => e.UserId).HasColumnName("UserId");
+                entity.Property(e => e.Email).HasColumnName("Email");
+                entity.Property(e => e.BusinessName).HasColumnName("BusinessName");
+                entity.Property(e => e.BusinessType).HasColumnName("BusinessType");
+                entity.Property(e => e.StreetName).HasColumnName("StreetName");
+                entity.Property(e => e.City).HasColumnName("City");
+                entity.Property(e => e.District).HasColumnName("District");
+                entity.Property(e => e.StreetAddress).HasColumnName("StreetAddress");
+                entity.Property(e => e.BusinessPhone).HasColumnName("BusinessPhone");
+                entity.Property(e => e.Description).HasColumnName("Description");
+                entity.Property(e => e.RequestDate).HasColumnName("RequestDate");
+                entity.Property(e => e.IsApproved).HasColumnName("IsApproved");
+                entity.Property(e => e.ApprovalDate).HasColumnName("ApprovalDate");
+                entity.Property(e => e.ImagePath).HasColumnName("ImagePath");
+            });
         }
         public DbSet<UserCartItem> UserCartItems { get; set; }
 
