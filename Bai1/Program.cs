@@ -52,7 +52,9 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts(); // Render đã dùng HTTPS, không cần redirect
-    // KHÔNG bật UseHttpsRedirection để tránh lỗi cổng HTTPS
+                   // KHÔNG bật UseHttpsRedirection để tránh lỗi cổng HTTPS
+    app.UseHttpsRedirection(); // 🔁 Đừng bỏ dòng này
+
 }
 
 app.UseStaticFiles();
@@ -73,5 +75,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://*:{port}"); // Đảm bảo app lắng nghe đúng port Render cấp
 
 app.Run();
