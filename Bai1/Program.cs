@@ -29,7 +29,7 @@ builder.Services.AddSession(options =>
 
 builder.Services.AddControllersWithViews();
 
-// ⚠️ ĐÃ CHUYỂN SANG DÙNG POSTGRESQL
+// PostgreSQL cho Render
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -38,10 +38,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
 })
-    .AddRoles<IdentityRole>()
-    .AddDefaultTokenProviders()
-    .AddDefaultUI()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+.AddRoles<IdentityRole>()
+.AddDefaultTokenProviders()
+.AddDefaultUI()
+.AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
@@ -51,10 +51,10 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseHsts(); // Render đã dùng HTTPS, không cần redirect
+    // KHÔNG bật UseHttpsRedirection để tránh lỗi cổng HTTPS
 }
 
-//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseSession();
