@@ -45,7 +45,7 @@ namespace Bai1.Models
         public string? ImageUrl { get; set; }
 
         public bool IsLocked { get; set; } = false;  // Khóa/mở cửa hàng
-        public DateTime? UnlockDate { get; set; }    // Ngày mở khoá
+        public DateTime? UnlockDate { get; set; } = DateTime.UtcNow;   // Ngày mở khoá
 
     }
 }
