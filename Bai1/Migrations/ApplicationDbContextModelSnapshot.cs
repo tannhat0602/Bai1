@@ -178,7 +178,8 @@ namespace Bai1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsOutOfStock")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean"); // Thay "bit" thành "boolean" cho PostgreSQL
+
 
                     b.Property<string>("Name")
                         .IsRequired()

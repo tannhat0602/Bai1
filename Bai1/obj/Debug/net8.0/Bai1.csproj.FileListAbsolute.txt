@@ -2911,3 +2911,6 @@ C:\Users\phung\OneDrive\Desktop\DACS\Bai1\Bai1\bin\Debug\net8.0\System.Net.Http.
 C:\Users\phung\OneDrive\Desktop\DACS\Bai1\Bai1\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
 C:\Users\VO THANH DANH\OneDrive\Máy tính\Tổng hơp\Đồ án cơ sở\Bai1\Bai1\bin\Debug\net8.0\System.Net.Http.Json.dll
 D:\Bai1\Bai1\bin\Debug\net8.0\System.Net.Http.Json.dll
+C:\Users\phung\OneDrive\Desktop\DACS\Bai1\Bai1\bin\Debug\net8.0\Npgsql.dll
+C:\Users\phung\OneDrive\Desktop\DACS\Bai1\Bai1\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\phung\OneDrive\Desktop\DACS\Bai1\Bai1\obj\Debug\net8.0\Bai1.sourcelink.json
