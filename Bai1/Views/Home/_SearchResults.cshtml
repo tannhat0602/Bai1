@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Food>
+
+@if (Model.Any())
+{
+    <ul class="list-group">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item">
+                <strong>@item.Name</strong> - @item.Price
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Không tìm thấy kết quả nào!</p>
+}

@@ -1,0 +1,226 @@
+﻿@model Bai1.Models.Store
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Store - " + Model.Name;
+}
+
+<div class="container py-5">
+    <!-- Store Header -->
+    <div class="text-center mb-5">
+        <div class="text-center mb-4">
+            <h1 class="fw-bold text-primary">@Model.Name</h1>
+            <span class="badge @(Model.IsApproved ? "bg-success text-white" : "bg-secondary text-dark") px-3 py-2 fs-6">
+                @(Model.IsApproved ? "Đã duyệt" : "Chờ duyệt")
+            </span>
+        </div>
+    </div>
+
+    <!-- Store Info -->
+    <div class="card shadow-lg p-4 mb-5 border-0 rounded-4 bg-light">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Url.Content(Model.ImageUrl)" alt="Ảnh cửa hàng" class="img-fluid rounded-4 shadow-sm" />
+                }
+                else
+                {
+                    <div class="alert alert-secondary text-center">Chưa có hình ảnh cho cửa hàng.</div>
+                }
+            </div>
+            <div class="col-md-6">
+                <ul class="list-group list-group-flush fs-5 text-dark">
+                    <li class="list-group-item bg-transparent"><i class="bi bi-person-circle text-primary"></i> <strong>Chủ sở hữu:</strong> @Model.Name</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-chat-left-text text-info"></i> <strong>Mô tả:</strong> @Model.Description</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-geo-alt text-danger"></i> <strong>Địa chỉ:</strong> @Model.StreetAddress, @Model.District, @Model.City</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-telephone text-success"></i> <strong>Điện thoại:</strong> @Model.Phone</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Food by Category -->
+    <h2 class="fw-bold text-gradient mb-4"><i class="bi bi-card-list"></i> Thực đơn</h2>
+
+    @if (ViewBag.GroupedFoods != null)
+    {
+        @foreach (var group in ViewBag.GroupedFoods)
+        {
+            <h4 class="mb-3 text-muted text-uppercase"><i class="bi bi-tag-fill text-secondary"></i> @group.Key?.Name</h4>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+                @foreach (var food in group)
+                {
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm rounded-4 @(food.IsOutOfStock ? "opacity-50" : "")">
+                            <div class="position-relative">
+                                <a href="@Url.Action("Details", "Foods", new { area = "Customer", id = food.Id })">
+                                    <img src="@food.ImageUrl" alt="Ảnh món ăn" class="card-img-top rounded-top-4" style="height: 180px; object-fit: cover; cursor: pointer;" />
+                                </a>
+                                @if (food.IsOutOfStock)
+                                {
+                                    <span class="badge bg-danger position-absolute top-0 start-0 m-2">Hết</span>
+                                }
+                            </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title fw-semibold text-body">@food.Name</h5>
+                                <p class="card-text text-muted">@food.Description</p>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="fw-bold text-body">@String.Format("{0:N0}₫", food.Price)</p>
+                                    @if (!food.IsOutOfStock)
+                                    {
+                                        <button type="button" class="btn btn-success rounded-circle add-to-cart"
+                                                data-product-id="@food.Id"
+                                                style="width: 36px; height: 36px; padding: 0; display: flex; align-items: center; justify-content: center;"
+                                                title="Thêm vào giỏ">
+                                            <i class="bi bi-plus-lg text-white" style="font-size: 1.2rem;"></i>
+                                        </button>
+
+
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-secondary" disabled>Hết hàng</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal nhập số lượng (đã làm đẹp) -->
+                    <div class="modal fade" id="quantityModal-@food.Id" tabindex="-1" aria-labelledby="quantityModalLabel-@food.Id" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content rounded-4 shadow-lg border-0">
+                                <div class="modal-header bg-gradient text-white rounded-top-4" style="background: linear-gradient(45deg, #00b09b, #96c93d);">
+                                    <h5 class="modal-title"><i class="bi bi-basket-fill me-2"></i>Chọn số lượng</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body text-center px-5 pb-4">
+                                    <p class="fw-bold fs-4 mb-3 text-dark">@food.Name</p>
+                                    <img src="@food.ImageUrl" alt="@food.Name" class="img-fluid rounded-3 shadow-sm mb-3" style="max-height: 200px; object-fit: cover;" />
+
+                                    <div class="input-group justify-content-center mb-3" style="max-width: 200px; margin: auto;">
+                                        <span class="input-group-text bg-light border-0"><i class="bi bi-plus-circle text-success fs-5"></i></span>
+                                        <input type="number" id="quantityInput-@food.Id" min="1" value="1" class="form-control text-center fw-bold fs-5 rounded" style="width: 80px;" />
+                                    </div>
+                                    <div class="text-danger mt-1 small" id="errorMessage-@food.Id" style="display:none;"></div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-4 px-3">
+                                        <p class="fw-bold text-success fs-5 mb-0"><i class="bi bi-cash-coin me-1"></i>@String.Format("{0:N0}₫", food.Price)</p>
+                                        <button class="btn btn-lg btn-warning px-4 rounded-3 confirm-add-to-cart" data-product-id="@food.Id" type="button">
+                                            <i class="bi bi-cart-plus-fill me-1"></i>Thêm
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-info text-center">Không có món ăn nào.</div>
+    }
+</div>
+
+<div id="cartMessage" class="alert alert-success text-center" style="display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+    Sản phẩm đã được thêm vào giỏ hàng!
+</div>
+
+<style>
+    .text-gradient {
+        background: linear-gradient(45deg, #007bff, #00c6ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .card-title {
+        color: #2c3e50;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        transition: 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .list-group-item i {
+        margin-right: 8px;
+    }
+
+    .btn-warning {
+        background-color: #f39c12;
+        border-color: #e67e22;
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        border-color: #c0392b;
+        color: white;
+    }
+
+    .opacity-50 {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    .modal-header.bg-gradient {
+        color: #1c1c1c !important;
+    }
+
+    .text-muted {
+        color: #BBBBBB !important;
+    }
+</style>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.add-to-cart').on('click', function () {
+                var productId = $(this).data('product-id');
+                $('#quantityModal-' + productId).modal('show');
+            });
+
+            $('.confirm-add-to-cart').on('click', function () {
+                var productId = $(this).data('product-id');
+                var quantity = parseInt($('#quantityInput-' + productId).val());
+                var token = $('input[name="__RequestVerificationToken"]').val();
+
+                $.ajax({
+                    url: '/ShoppingCart/AddToCart',
+                    method: 'POST',
+                    data: {
+                        __RequestVerificationToken: token,
+                        productId: productId,
+                        quantity: quantity
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            $('#cartMessage').text("Sản phẩm đã được thêm vào giỏ hàng!").fadeIn().delay(3000).fadeOut();
+                        } else {
+                            $('#errorMessage-' + productId).text(response.message).show();
+                        }
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 401) {
+                            window.location.href = "/Identity/Account/Login";
+                        } else {
+                            $('#errorMessage-' + productId).text("Đã xảy ra lỗi khi thêm vào giỏ hàng.").show();
+                        }
+                    }
+                });
+
+                $('#quantityModal-' + productId).modal('hide');
+            });
+        });
+    </script>
+}

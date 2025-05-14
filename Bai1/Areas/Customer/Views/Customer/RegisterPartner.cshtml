@@ -1,0 +1,190 @@
+﻿@model Bai1.Models.PartnerRequest
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Đăng ký đối tác";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+
+<div class="container mt-5">
+    <div class="row shadow rounded overflow-hidden">
+        <!-- Hình minh họa bên trái -->
+        <div class="col-md-6 p-0 d-none d-md-block">
+            <img src="/images/grab-banner.jpg" class="img-fluid h-100 w-100" style="object-fit: cover;" alt="Partner banner">
+        </div>
+
+        <!-- Form đăng ký bên phải -->
+        <div class="col-md-6 bg-white p-4">
+            <h3 class="fw-bold">
+                <span style="color: #007bff;">Trở thành Nhà hàng Đối tác cùng</span>
+                <span style="color: #28a745;"> TTDFood</span>
+            </h3>
+
+            <p class="text-muted small mb-4">
+                Điền vào thông tin theo mẫu sau. Lưu ý, TTDFood sẽ thu phí hoa hồng trên đơn hàng theo tỷ lệ quy định tại hợp đồng dịch vụ thương mại điện tử giữa TTDFood và Thương Nhân (* gọi là "Phí Dịch Vụ").
+                <br /><i>(* Vui lòng nhập địa chỉ email chính xác.)</i>
+            </p>
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+                <a href="@Url.Action("Index", "Customer", new { area = "Customer" })" class="btn btn-primary">Quay lại trang chủ</a>
+            }
+            else
+            {
+                <form asp-controller="Customer" asp-action="RegisterPartner" method="post">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="BusinessName" class="form-label">Tên Nhà hàng/Quán ăn</label>
+                        <input asp-for="BusinessName" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="BusinessType" class="form-label">Loại hình Kinh doanh</label>
+                        <input asp-for="BusinessType" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="StreetAddress" class="form-label">Địa chỉ</label>
+                        <input asp-for="StreetAddress" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="StreetName" class="form-label">Tên đường</label>
+                        <input asp-for="StreetName" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label asp-for="City" class="form-label">Tỉnh/Thành phố</label>
+                        <select asp-for="City" class="form-select" id="City" required>
+                            <option value="">-- Chọn Tỉnh/Thành phố --</option>
+                            <option value="Hà Nội">Hà Nội</option>
+                            <option value="TP.HCM">TP.HCM</option>
+                            <option value="Đồng Nai">Đồng Nai</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                            <option value="Cần Thơ">Cần Thơ</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="District" class="form-label">Quận/Huyện</label>
+                        <select asp-for="District" class="form-select" id="District" required>
+                            <option value="">-- Chọn Quận/Huyện --</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="BusinessPhone" class="form-label">Số điện thoại</label>
+                        <input asp-for="BusinessPhone" class="form-control" required />
+                    </div>
+
+                    <!-- THÊM ẢNH: -->
+                    <div class="mb-3">
+                        <label class="form-label">Hình ảnh cửa hàng</label>
+                        <input type="file" name="StoreImage" class="form-control" accept="image/*" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Gửi yêu cầu</button>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Xử lý Quận/Huyện tùy theo Tỉnh/Thành phố đã chọn
+        $(document).ready(function () {
+            $.getJSON("/dist/districts.json", function (data) {
+                $('#City').change(function () {
+                    var selectedCity = $(this).val();
+                    var districtSelect = $('#District');
+                    districtSelect.empty();
+                    districtSelect.append('<option value="">-- Chọn Quận/Huyện --</option>');
+
+                    if (selectedCity && data[selectedCity]) {
+                        var districts = data[selectedCity];
+                        $.each(districts, function (index, district) {
+                            districtSelect.append('<option value="' + district + '">' + district + '</option>');
+                        });
+                    } else {
+                        districtSelect.append('<option value="">Không có quận huyện</option>');
+                    }
+                });
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.log("Lỗi khi tải dữ liệu: " + textStatus);
+            });
+        });
+    </script>
+}
+<!-- Quy trình đăng ký đối tác -->
+<div class="card shadow-sm p-4 mb-5 bg-white rounded">
+    <h4 class="text-success mb-4">QUY TRÌNH ĐĂNG KÝ ĐỐI TÁC NHÀ HÀNG TTDFood</h4>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="border p-3 rounded h-100">
+                <h5 class="text-success">Bước 1: Đăng ký thông tin qua website</h5>
+                <p>Điền các thông tin của Nhà hàng: <a href="" target="_blank"></a></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border p-3 rounded h-100">
+                <h5 class="text-success">Bước 2: Cung cấp các thông tin chi tiết</h5>
+                <p>Kiểm tra email từ TTDFood để tiếp tục đăng ký và điền theo hướng dẫn <a href="" target="_blank"></a>.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border p-3 rounded h-100">
+                <h5 class="text-success">Bước 3: Nhận tư vấn của TTDFood</h5>
+                <p>Đối tác nhận và ký hợp đồng, gửi lại hợp đồng theo hướng dẫn.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border p-3 rounded h-100">
+                <h5 class="text-success">Bước 4: Theo dõi quá trình đăng ký</h5>
+                <p>Thông báo đăng ký thành công sẽ được gửi qua email.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border p-3 rounded h-100">
+                <h5 class="text-success">Bước 5: Đăng nhập ứng dụng</h5>
+                <p>Đối tác đăng nhập và chính thức trở thành đối tác TTDFood.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tài liệu cần chuẩn bị -->
+<div class="card shadow-sm p-4 bg-white rounded">
+    <h4 class="text-primary mb-4">CÁC TÀI LIỆU QUAN TRỌNG CẦN CHUẨN BỊ</h4>
+
+    <h5 class="text-primary">1. Thông tin chủ cửa hàng/doanh nghiệp</h5>
+    <ul>
+        <li>Email đại diện pháp luật (nên là Gmail)</li>
+        <li>Hình chụp CMND/CCCD/Hộ chiếu</li>
+        <li>Hình chụp chứng minh tài khoản ngân hàng (phải trùng tên hợp đồng)</li>
+    </ul>
+
+    <h5 class="text-primary mt-4">2. Thông tin cửa hàng/doanh nghiệp</h5>
+    <ul>
+        <li>Giấy phép đăng ký kinh doanh (cá nhân hoặc công ty)</li>
+        <li>Giấy ủy quyền (nếu có)</li>
+        <li>Hình ảnh thực đơn và món ăn</li>
+        <li>Hình chụp giấy vệ sinh an toàn thực phẩm (nếu có)</li>
+    </ul>
+</div>

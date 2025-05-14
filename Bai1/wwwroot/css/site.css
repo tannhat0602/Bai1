@@ -1,0 +1,249 @@
+﻿/* Cơ bản - Đặt lại kích thước font */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/* Nội dung chính */
+.content {
+    min-height: calc(100vh - 100px); /* Đảm bảo phần nội dung không chiếm hết màn hình, tính toán theo chiều cao footer */
+    padding-bottom: 100px; /* Đảm bảo có không gian cho footer */
+}
+
+/* Footer */
+footer {
+    position: relative;
+    margin-top: 30px;
+    padding: 10px 0;
+    background-color: #f8f9fa;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Banner */
+.banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+    .banner-content h1 {
+        font-size: 64px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .banner-content p {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .banner-content .btn {
+        padding: 15px 30px;
+        font-size: 20px;
+    }
+
+/* Hiệu ứng hiện form tìm kiếm */
+.search-container {
+    margin-left: 10px;
+}
+
+#searchForm {
+    top: 100%;
+    margin-top: 5px;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Hiệu ứng hover cho các nút */
+.hover-effect:hover,
+
+.btn-link.nav-link:hover {
+    background-color: #00B14F; /* Màu nền khi hover */
+    color: white; /* Màu chữ khi hover */
+    border-color: #00B14F; /* Viền khi hover */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+    transform: scale(1.05); /* Thêm hiệu ứng phóng to nhẹ khi hover */
+}
+.btn:hover {
+    color: white !important; /* Màu chữ khi hover */
+    background-color: #00B14F !important; /* Màu nền khi hover */
+    border-color: #00B14F !important; /* Màu viền khi hover */
+}
+
+
+/* Hiệu ứng hover cho các mục trong dropdown */
+.dropdown-item:hover,
+.dropdown-toggle:hover,
+.dropdown-menu .dropdown-item:hover {
+    background-color: #00B14F; /* Màu nền khi hover */
+    color: white !important; /* Màu chữ khi hover */
+    border-color: #00B14F; /* Màu viền khi hover */
+}
+
+/* Hiệu ứng hover cho tên trong dropdown */
+.hover-name:hover {
+    color: #00B14F !important;
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu mượt mà */
+}
+
+.identity-icon {
+    color: #00B14F; /* Màu xanh Grab */
+}
+
+.identity-name:hover,
+#userDropdown:hover .identity-name {
+    color: #FFFFFF !important; /* Màu trắng khi hover */
+}
+
+#userDropdown:hover .identity-icon {
+    color: #00B14F !important; /* Đổi màu icon thành xanh lá khi hover */
+}
+
+/* Hiệu ứng hover cho thẻ cửa hàng */
+.card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+    .card:hover .card-title {
+        color: #00B14F; /* Màu xanh giống nút btn-primary */
+    }
+
+/* Dark Mode */
+body.dark {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark .card {
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.dark .card-title,
+.dark .card-text,
+.dark .text-muted,
+.dark .text-success,
+.dark .text-primary,
+.dark .badge {
+    color: #ffffff;
+}
+
+.dark .btn-primary {
+    background-color: #3498db;
+    border-color: #2980b9;
+}
+
+.dark .btn-warning {
+    background-color: #f39c12;
+    border-color: #e67e22;
+}
+
+.dark .btn-danger {
+    background-color: #e74c3c;
+    border-color: #c0392b;
+}
+
+.dark .alert {
+    background-color: #333;
+    color: white;
+}
+
+.dark .badge.bg-success {
+    background-color: #28a745;
+}
+
+.dark .badge.bg-secondary {
+    background-color: #6c757d;
+}
+
+.dark .toast {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+/* Hiệu ứng hover cho nút khi ở chế độ Dark */
+.dark .btn:hover,
+.dark .dropdown-item:hover,
+.dark .dropdown-toggle:hover {
+    background-color: #00B14F;
+    color: white;
+    border-color: #00B14F;
+}
+
+/* Hiệu ứng hover cho tên trong dropdown khi ở chế độ Dark */
+.dark .hover-name:hover {
+    color: #00B14F !important;
+}
+
+/* Hiệu ứng hover cho các icon khi hover vào dropdown trong dark mode */
+.dark #userDropdown:hover .identity-icon {
+    color: #00B14F !important;
+}
+
+/* Hiệu ứng hover cho tên người dùng trong dropdown */
+.dark #userDropdown:hover .identity-name {
+    color: #FFFFFF !important;
+}
+
+/* Hiệu ứng hover cho nút giỏ hàng */
+.cart-button:hover {
+    background-color: #00B14F;
+    color: white;
+    border-color: #00B14F;
+}
+
+/* Hiệu ứng hover cho nút giỏ hàng khi ở chế độ Dark */
+.dark .cart-button:hover {
+    background-color: #00B14F;
+    color: white;
+    border-color: #00B14F;
+}

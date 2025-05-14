@@ -1,0 +1,421 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Bai1.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Bai1.ksz4ytw9b6.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\banner.txt",
+      "PackagePath": "staticwebassets\\banner.txt"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\dist\\districts.json",
+      "PackagePath": "staticwebassets\\dist\\districts.json"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\0acad556-4bbd-4f45-bf3b-ad3c75680895_Screenshot 2025-04-15 230110.png",
+      "PackagePath": "staticwebassets\\images\\0acad556-4bbd-4f45-bf3b-ad3c75680895_Screenshot 2025-04-15 230110.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\413b53c9-47e5-45a6-a99a-db5422be3747_thiet-ke-nha-hang-dong-que-viet-05.jpg",
+      "PackagePath": "staticwebassets\\images\\413b53c9-47e5-45a6-a99a-db5422be3747_thiet-ke-nha-hang-dong-que-viet-05.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\47cb2379-01d8-4cfb-8e19-b00b2d1361a1_thiet-ke-nha-hang-5.jpg",
+      "PackagePath": "staticwebassets\\images\\47cb2379-01d8-4cfb-8e19-b00b2d1361a1_thiet-ke-nha-hang-5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\496610897_706061678588702_6558038612395536922_n.jpg",
+      "PackagePath": "staticwebassets\\images\\496610897_706061678588702_6558038612395536922_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\59e9d68b-70f2-4646-98d0-1ecd90b2528b_tải xuống.jfif",
+      "PackagePath": "staticwebassets\\images\\59e9d68b-70f2-4646-98d0-1ecd90b2528b_tải xuống.jfif"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\66f7c7a0-4537-49bf-9811-23f8fbf5920f_th (1).jpg",
+      "PackagePath": "staticwebassets\\images\\66f7c7a0-4537-49bf-9811-23f8fbf5920f_th (1).jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\7921e986-5a39-4692-95d3-8985d5a6e75d_Screenshot 2025-04-16 201912.png",
+      "PackagePath": "staticwebassets\\images\\7921e986-5a39-4692-95d3-8985d5a6e75d_Screenshot 2025-04-16 201912.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\884c157e-e3de-4938-bed1-be5397de1e7d_7-nha-hang-am-thuc-thuan-chay-tai-tp-hcm-1.jpeg",
+      "PackagePath": "staticwebassets\\images\\884c157e-e3de-4938-bed1-be5397de1e7d_7-nha-hang-am-thuc-thuan-chay-tai-tp-hcm-1.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\89d89cca-54af-4f83-ae62-02864288fe16_Screenshot 2025-04-15 235524.png",
+      "PackagePath": "staticwebassets\\images\\89d89cca-54af-4f83-ae62-02864288fe16_Screenshot 2025-04-15 235524.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\95f8c2bf-53e6-4c61-a9f6-f9e1972afd7b_LauThai.jpg",
+      "PackagePath": "staticwebassets\\images\\95f8c2bf-53e6-4c61-a9f6-f9e1972afd7b_LauThai.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\ComChienHaiSan.png",
+      "PackagePath": "staticwebassets\\images\\ComChienHaiSan.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\LauThai.jpg",
+      "PackagePath": "staticwebassets\\images\\LauThai.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\Screenshot 2025-04-16 201912.png",
+      "PackagePath": "staticwebassets\\images\\Screenshot 2025-04-16 201912.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\a18a24fb-f446-4ecb-86ac-6a3554632459_backround.png",
+      "PackagePath": "staticwebassets\\images\\a18a24fb-f446-4ecb-86ac-6a3554632459_backround.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\avatar-bot.png",
+      "PackagePath": "staticwebassets\\images\\avatar-bot.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\b354a86c-4c2a-453a-8113-32fab1a9d8de_com-chien-xuc-xich-8-134.jpg",
+      "PackagePath": "staticwebassets\\images\\b354a86c-4c2a-453a-8113-32fab1a9d8de_com-chien-xuc-xich-8-134.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\b3df4ae9-09bd-4b46-953a-5dea181352d2_Screenshot 2025-04-16 093605.png",
+      "PackagePath": "staticwebassets\\images\\b3df4ae9-09bd-4b46-953a-5dea181352d2_Screenshot 2025-04-16 093605.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\background.png",
+      "PackagePath": "staticwebassets\\images\\background.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\banh-xeo.jpg",
+      "PackagePath": "staticwebassets\\images\\banh-xeo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\banner.jpg",
+      "PackagePath": "staticwebassets\\images\\banner.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\ca-tai-tuong.jpg",
+      "PackagePath": "staticwebassets\\images\\ca-tai-tuong.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\ccca1977-ac32-49c1-8e7c-1e6c374e45b3_tải xuống.jfif",
+      "PackagePath": "staticwebassets\\images\\ccca1977-ac32-49c1-8e7c-1e6c374e45b3_tải xuống.jfif"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\coca.png",
+      "PackagePath": "staticwebassets\\images\\coca.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\com-chien-xuc-xich-8-134.jpg",
+      "PackagePath": "staticwebassets\\images\\com-chien-xuc-xich-8-134.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\default-banner.png",
+      "PackagePath": "staticwebassets\\images\\default-banner.png"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\flatlay-iron-skillet-with-meat-and-other-food.jpg",
+      "PackagePath": "staticwebassets\\images\\flatlay-iron-skillet-with-meat-and-other-food.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\grab-banner.jpg",
+      "PackagePath": "staticwebassets\\images\\grab-banner.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\mi-xao-hai-san-4x5.jpg",
+      "PackagePath": "staticwebassets\\images\\mi-xao-hai-san-4x5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\nghe-thuat-chup-anh-mon-an-loi-cuon-06.jpg",
+      "PackagePath": "staticwebassets\\images\\nghe-thuat-chup-anh-mon-an-loi-cuon-06.jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\pepsi.png.webp",
+      "PackagePath": "staticwebassets\\images\\pepsi.png.webp"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\premium_photo-1681841594224-ad729a249113.avif",
+      "PackagePath": "staticwebassets\\images\\premium_photo-1681841594224-ad729a249113.avif"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\th (2).jpg",
+      "PackagePath": "staticwebassets\\images\\th (2).jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\th (3).jpg",
+      "PackagePath": "staticwebassets\\images\\th (3).jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\th (4).jpg",
+      "PackagePath": "staticwebassets\\images\\th (4).jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\images\\th (5).jpg",
+      "PackagePath": "staticwebassets\\images\\th (5).jpg"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\js\\chat.js",
+      "PackagePath": "staticwebassets\\js\\chat.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\phung\\OneDrive\\Desktop\\DACS\\Bai1\\Bai1\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Bai1.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Bai1.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Bai1.props",
+      "PackagePath": "build\\Bai1.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Bai1.props",
+      "PackagePath": "buildMultiTargeting\\Bai1.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Bai1.props",
+      "PackagePath": "buildTransitive\\Bai1.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

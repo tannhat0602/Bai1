@@ -1,0 +1,62 @@
+﻿@model Bai1.Models.Order
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chi Tiết Đơn Hàng #" + Model.Id;
+}
+
+<div class="container py-5">
+    <h2 class="mb-4 text-success fw-bold">🧾 @ViewData["Title"]</h2>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="mb-2"><strong>Ngày đặt:</strong> @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</div>
+            <div class="mb-2"><strong>Tổng tiền:</strong> @Model.TotalPrice.ToString("C")</div>
+            <div class="mb-2"><strong>Phương thức thanh toán:</strong> @Model.PaymentMethod</div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-2"><strong>Địa chỉ giao hàng:</strong> @Model.ShippingAddress</div>
+            <div class="mb-2"><strong>Ghi chú:</strong> @(string.IsNullOrEmpty(Model.Notes) ? "Không có" : Model.Notes)</div>
+            <div class="mb-2"><strong>Trạng thái:</strong> @Model.Status</div>
+        </div>
+    </div>
+
+    <h4 class="mt-4">🛒 Danh sách sản phẩm</h4>
+
+    @if (Model.OrderDetails != null && Model.OrderDetails.Any())
+    {
+        <div class="table-responsive mt-3">
+            <table class="table table-bordered">
+                <thead class="table-success text-center">
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderDetails)
+                    {
+                        <tr class="text-center">
+                            <td>@item.Food?.Name</td>
+                            <td>@item.Price.ToString("C")</td>
+                            <td>@item.Quantity</td>
+                            <td>@(item.Quantity * item.Price)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning mt-3">Không có sản phẩm nào trong đơn hàng này.</div>
+    }
+
+    <div class="mt-4 text-end">
+        <a asp-area="Customer" asp-controller="Order" asp-action="History" class="btn btn-secondary">
+            ⬅️ Quay lại lịch sử đơn hàng
+        </a>
+    </div>
+</div>

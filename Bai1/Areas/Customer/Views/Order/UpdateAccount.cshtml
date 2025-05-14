@@ -1,0 +1,28 @@
+﻿@model Bai1.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Cập nhật tài khoản";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="UserName" class="form-label">Tên người dùng</label>
+        <input type="text" class="form-control" id="UserName" name="UserName" value="@Model.UserName" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required />
+    </div>
+
+    <!-- Thêm các trường khác nếu cần thiết -->
+
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+</form>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success mt-3">@TempData["Message"]</div>
+}

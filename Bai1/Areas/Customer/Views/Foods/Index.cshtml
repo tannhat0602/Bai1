@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Bai1.Models.Food>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Sản Phẩm Xịn Xò</h2>
+<style>
+	body {
+		background-color: #B8E1FF; /* Đổi màu nền ở đây */
+		color: #5586BO;
+	}
+
+	thead {
+		background-color: #e9ecef; /* Màu xanh dương */
+		color: #000; /* Chữ màu trắng */
+	}
+
+	h1 {
+		color: #5586BO; /* Đổi màu chữ tiêu đề */
+	}
+
+	table {
+		border: 3px solid #007bff; /* Viền bảng màu xanh dương */
+		border-image: linear-gradient(to right, red, blue) 1;
+		border-radius: 8px; /* Bo góc */
+	}
+
+	tbody tr:nth-child(odd) {
+		background-color: #f8f9fa; /* Màu nền xen kẽ */
+	}
+
+	tbody tr:nth-child(even) {
+		background-color: #e9ecef;
+	}
+
+	img {
+		border-radius: 10px;
+	}
+</style>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Hình Ảnh</th>
+			<th>Tên</th>
+			<th>Giá</th>
+			<th>Mô Tả</th>
+			<th>Phân Loại</th>
+			<th>Thực Hiện</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		@foreach (var food in Model)
+		{
+			<tr>
+				<td>
+					<img src="@food.ImageUrl" alt="Product Image" style="width: 100px; height: auto;" />
+				</td>
+				<td>@food.Name</td>
+				<td>@food.Price</td>
+				<td>@food.Description</td>
+				<td>@food.Category?.Name</td>
+
+				<td>
+					<a href="@Url.Action("Details", "Foods", new { area = "Customer", id = food.Id })" class="btn btn-info">
+						<i class="bi bi-eye"></i> View
+					</a>
+
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Bai1.Models.Order>
+
+@{
+    ViewData["Title"] = "Xác nhận đơn hàng";
+}
+
+<h2 class="text-center my-4">Xác nhận đơn hàng</h2>
+
+<div class="container">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Ngày đặt</th>
+                <th>Địa chỉ</th>
+                <th>Ghi chú</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.OrderDate.ToString("dd/MM/yyyy")</td>
+                    <td>@order.ShippingAddress</td> <!-- Hiển thị địa chỉ -->
+                    <td>@order.Notes</td>    <!-- Hiển thị ghi chú -->
+                    <td>
+                        @if (order.Status == "Đã xác nhận")
+                        {
+                            <span class="badge badge-success">@order.Status</span>
+                        }
+                        else if (order.Status == "Đã hủy")
+                        {
+                            <span class="badge badge-danger">@order.Status</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-warning">@order.Status</span>
+                        }
+                    </td>
+                    <td>
+                        <form method="post" action="@Url.Action("ConfirmOrder", "Orders", new { area = "Partner" })" style="display:inline-block;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="orderId" value="@order.Id" />
+                            <button type="submit" class="btn btn-success btn-sm">Xác nhận</button>
+                        </form>
+
+                        <form method="post" action="@Url.Action("CancelOrder", "Orders", new { area = "Partner" })" style="display:inline-block; margin-left: 5px;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="orderId" value="@order.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Hủy</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Thêm một số style tùy chỉnh -->
+<style>
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .btn-success, .btn-danger {
+        font-size: 14px;
+        transition: background-color 0.3s;
+    }
+
+        .btn-success:hover {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+    .badge-success {
+        background-color: #28a745;
+    }
+
+    .badge-warning {
+        background-color: #ffc107;
+    }
+
+    .badge-danger {
+        background-color: #dc3545;
+    }
+</style>
+@section Scripts {
+    <!-- Chỉ chèn các script này vào view này -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+}

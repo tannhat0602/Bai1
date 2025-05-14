@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Bai1.Models.PartnerRequest>
+
+@{
+    ViewData["Title"] = "Quản lý yêu cầu đối tác";
+}
+
+<div class="container py-4">
+    <h2 class="mb-4 text-center">Quản lý yêu cầu đối tác</h2>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Tên quán</th>
+                    <th>Loại</th>
+                    <th>Địa chỉ</th>
+                    <th>Điện thoại</th>
+                    <th>Trạng thái</th>
+                    <th>Ảnh</th> <!-- Thêm cột Ảnh -->
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in Model)
+                {
+                    <tr>
+                        <td>@request.Id</td>
+                        <td>@request.BusinessName</td>
+                        <td>@request.BusinessType</td>
+                        <td>
+                            @request.StreetAddress, @request.StreetName, @request.District, @request.City
+                        </td>
+                        <td>@request.BusinessPhone</td>
+                        <td>
+                            @if (request.IsApproved)
+                            {
+                                <span class="badge bg-success">Đã duyệt</span>
+
+                                <br />
+                                <small>@request.ApprovalDate?.ToString("dd/MM/yyyy")</small>
+                            }
+                            else if (request.ApprovalDate != null)
+                            {
+                                <span class="badge bg-danger">Đã từ chối</span>
+
+                                <br />
+                                <small>@request.ApprovalDate?.ToString("dd/MM/yyyy")</small>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">Chờ duyệt</span>
+                            }
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(request.ImagePath))
+                            {
+                                <img src="@Url.Content(request.ImagePath)" alt="Ảnh quán" width="80" height="80" style="object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <span>Không có ảnh</span>
+                            }
+                        </td> <!-- Cột Ảnh -->
+                        <td>
+                            @if (!request.IsApproved && request.ApprovalDate == null)
+                            {
+                                <div class="d-flex justify-content-center gap-2">
+                                    <form method="post" action="@Url.Action("Approve", "PartnerRequest", new { area = "Admin", id = request.Id })" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="bi bi-check-circle"></i> Duyệt
+                                        </button>
+                                    </form>
+                                    <form method="post" action="@Url.Action("Reject", "PartnerRequest", new { area = "Admin", id = request.Id })" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-x-circle"></i> Từ chối
+                                        </button>
+                                    </form>
+                                </div>
+                            }
+                            else
+                            {
+                                <em>Không khả dụng</em>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '@TempData["SuccessMessage"]',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: '@TempData["ErrorMessage"]',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        </script>
+    }
+}

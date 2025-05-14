@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Bai1.Models.Store>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Kết quả tìm kiếm";
+    Layout = "_Layout";
+}
+
+<div class="container py-4">
+    <h2 class="mb-4">Kết quả tìm kiếm cho: @ViewBag.Query</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning">
+            Không tìm thấy kết quả nào.
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            @foreach (var store in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 store-card" style="cursor: pointer;" onclick="window.location.href='@Url.Action("Details", "Store", new { id = store.Id })'">
+                        <img src="@store.ImageUrl" class="card-img-top" alt="@store.Name" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">@store.Name</h5>
+                            <p class="card-text text-muted small">@store.Description</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+}

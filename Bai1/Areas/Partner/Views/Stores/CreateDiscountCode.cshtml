@@ -1,0 +1,65 @@
+﻿@model Bai1.Models.DiscountCode
+@{
+    ViewData["Title"] = "Tạo mã giảm giá";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4 bg-light bg-opacity-75">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-success">
+                <i class="bi bi-ticket-perforated-fill"></i> Tạo mã giảm giá mới
+            </h2>
+            <p class="text-muted">Thu hút khách hàng bằng các ưu đãi hấp dẫn 💰</p>
+        </div>
+
+        <form asp-action="CreateDiscountCode" method="post">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label asp-for="Code" class="form-label">Mã giảm giá</label>
+                    <input asp-for="Code" class="form-control form-control-lg rounded-3" placeholder="NHAPMA123" />
+                    <span asp-validation-for="Code" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="DiscountPercent" class="form-label">Phần trăm giảm (%)</label>
+                    <input asp-for="DiscountPercent" class="form-control form-control-lg rounded-3" placeholder="10" />
+                    <span asp-validation-for="DiscountPercent" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label asp-for="ValidFrom" class="form-label">Hiệu lực từ</label>
+                    <input asp-for="ValidFrom" type="date" class="form-control form-control-lg rounded-3" />
+                    <span asp-validation-for="ValidFrom" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="ValidTo" class="form-label">Đến ngày</label>
+                    <input asp-for="ValidTo" type="date" class="form-control form-control-lg rounded-3" />
+                    <span asp-validation-for="ValidTo" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Mô tả</label>
+                <textarea asp-for="Description" class="form-control form-control-lg rounded-3" rows="3" placeholder="Áp dụng cho khách mới, đơn > 100k..."></textarea>
+                <span asp-validation-for="Description" class="text-danger small"></span>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success btn-lg px-5 rounded-pill shadow-sm">
+                    <i class="bi bi-plus-circle-fill"></i> Tạo mã ngay
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    
+    <!-- Chỉ chèn các script này vào view này -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+}
+

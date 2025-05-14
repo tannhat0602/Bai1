@@ -1,0 +1,308 @@
+﻿@model Bai1.Models.Store
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Store - " + Model.Name;
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<div class="container py-5">
+    <!-- Store Header -->
+    <div class="text-center mb-5">
+        <div class="text-center mb-4">
+            <h1 class="fw-bold text-primary">@Model.Name</h1>
+            <span class="badge @(Model.IsApproved ? "bg-success text-white" : "bg-secondary text-dark") px-3 py-2 fs-6">
+                @(Model.IsApproved ? "Đã duyệt" : "Chờ duyệt")
+            </span>
+        </div>
+    </div>
+
+    <div class="card shadow-lg p-4 mb-5 border-0 rounded-4 bg-light">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Url.Content(Model.ImageUrl)" alt="Ảnh cửa hàng" class="img-fluid rounded-4 shadow-sm" />
+                }
+                else
+                {
+                    <div class="alert alert-secondary text-center">Chưa có hình ảnh cho cửa hàng.</div>
+                }
+            </div>
+            <div class="col-md-6">
+                <ul class="list-group list-group-flush fs-5 text-dark">
+                    <li class="list-group-item bg-transparent"><i class="bi bi-person-circle text-primary"></i> <strong>Chủ sở hữu:</strong> @Model.Name</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-chat-left-text text-info"></i> <strong>Mô tả:</strong> @Model.Description</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-geo-alt text-danger"></i> <strong>Địa chỉ:</strong> @Model.StreetAddress, @Model.District, @Model.City</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-telephone text-success"></i> <strong>Điện thoại:</strong> @Model.Phone</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+
+        <a href="@Url.Action("EditStore", "Stores", new { id = Model.Id, area = "Partner" })"
+           class="btn btn-lg rounded-pill px-4 text-white"
+           style="background-color: #0d6efd;">
+            <i class="bi bi-pencil-square me-1"></i> Chỉnh sửa cửa hàng
+        </a>
+
+        <a href="@Url.Action("CreateDiscountCode", "Stores", new { area = "Partner" })"
+           class="btn btn-lg rounded-pill px-4 text-white"
+           style="background-color: #20c997;">
+            <i class="bi bi-tag-fill me-1"></i> Tạo mã giảm giá
+        </a>
+
+        <a href="/Partner/Stores/TotalRevenue"
+           class="btn btn-lg rounded-pill px-4 text-white"
+           style="background-color: #6f42c1;">
+            <i class="bi bi-bar-chart-fill me-1"></i> Thống kê doanh thu
+        </a>
+
+        <a asp-action="CreateFood"
+           class="btn btn-lg rounded-pill px-4 text-white"
+           style="background-color: #fd7e14;">
+            <i class="bi bi-plus-circle me-1"></i> Thêm món ăn
+        </a>
+
+    </div>
+
+
+    <!-- Display Foods Available -->
+    <h2 class="fw-bold mb-4">Các món ăn có sẵn</h2>
+
+        @if (ViewBag.GroupedFoods != null)
+        {
+            @foreach (var group in ViewBag.GroupedFoods)
+            {
+            <h4 class="mb-3 text-muted text-uppercase"><i class="bi bi-tag-fill text-secondary"></i> @group.Key?.Name</h4>
+
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+                    @foreach (var food in group)
+                    {
+                        <div class="col">
+                            <div class="card h-100 border-0 shadow-sm rounded-4">
+                                <img src="@food.ImageUrl" alt="Ảnh món ăn" class="card-img-top rounded-top-4" style="height: 180px; object-fit: cover;" />
+
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title fw-semibold">@food.Name</h5>
+                                        <p class="card-text text-muted">@food.Description</p>
+                                        <p class="mb-2 text-muted"><small><i class="bi bi-bookmark-fill"></i> @food.Category?.Name</small></p>
+                                        <p class="fw-bold text-success fs-5">@String.Format("{0:N0}₫", food.Price)</p>
+                                    </div>
+
+                                    <div class="mt-3 d-flex flex-wrap gap-2">
+                                        <a href="@Url.Action("Details", "Stores", new { area = "Partner", id = food.Id })"
+                                           class="btn btn-info btn-lg flex-grow-1" title="Chi tiết">
+                                            <i class="bi bi-eye me-1"></i> Xem
+                                        </a>
+                                        <a href="@Url.Action("EditFood", "Stores", new { area = "Partner", id = food.Id })"
+                                           class="btn btn-warning btn-lg flex-grow-1" title="Chỉnh sửa">
+                                            <i class="bi bi-pencil me-1"></i> Sửa
+                                        </a>
+                                        <a href="@Url.Action("ToggleOutOfStock", "Stores", new { area = "Partner", id = food.Id })"
+                                           class="btn btn-lg flex-grow-1 @(food.IsOutOfStock ? "btn-secondary" : "btn-danger")"
+                                           title="@(food.IsOutOfStock ? "Đánh dấu là còn món" : "Đánh dấu là hết món")">
+                                            <i class="bi @(food.IsOutOfStock ? "bi-check-circle" : "bi-exclamation-circle") me-1"></i>
+                                            @(food.IsOutOfStock ? "Còn món" : "Hết món")
+                                        </a>
+
+
+                                      
+                                        <a href="@Url.Action("DeleteFood", "Stores", new { area = "Partner", id = food.Id })"
+                                           class="btn btn-danger btn-lg flex-grow-1" title="Xóa">
+                                            <i class="bi bi-trash me-1"></i> Xóa
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-info text-center">
+                Chưa có món ăn nào. <a href="@Url.Action("CreateFood", "Stores", new { area="Partner" })" class="alert-link">Thêm ngay!</a>
+            </div>
+        }
+
+
+</div>
+
+<!-- Styling -->
+<style>
+  
+
+
+   
+
+    .card {
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .badge {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #3498db;
+        border-color: #2980b9;
+    }
+
+    .btn-warning {
+        background-color: #f39c12;
+        border-color: #e67e22;
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        border-color: #c0392b;
+        color: white;
+    }
+
+    .action-buttons .btn {
+        margin-right: 5px;
+    }
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+    .fixed-table-wrapper {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .fixed-table {
+        table-layout: fixed;
+        width: 100%;
+        word-break: break-word;
+    }
+
+        .fixed-table td,
+        .fixed-table th {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+            text-align: center;
+            padding: 8px;
+        }
+
+            /* Ràng buộc kích thước từng cột */
+            .fixed-table td:nth-child(1), .fixed-table th:nth-child(1) {
+                width: 70px;
+            }
+            /* ảnh */
+            .fixed-table td:nth-child(2), .fixed-table th:nth-child(2) {
+                width: 120px;
+            }
+            /* tên */
+            .fixed-table td:nth-child(3), .fixed-table th:nth-child(3) {
+                width: 100px;
+            }
+            /* giá */
+            .fixed-table td:nth-child(4), .fixed-table th:nth-child(4) {
+                width: 200px;
+            }
+            /* mô tả */
+            .fixed-table td:nth-child(5), .fixed-table th:nth-child(5) {
+                width: 120px;
+            }
+            /* phân loại */
+            .fixed-table td:nth-child(6), .fixed-table th:nth-child(6) {
+                width: 160px;
+            }
+            /* nút hành động */
+
+            .fixed-table td img {
+                width: 60px;
+                height: 60px;
+                object-fit: cover;
+                display: block;
+                margin: 0 auto;
+            }
+
+    .modal-header.bg-gradient {
+        color: #1c1c1c !important;
+    }
+
+    .text-gradient {
+        background: linear-gradient(45deg, #007bff, #00c6ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-muted {
+        color: #BBBBBB !important;
+       
+    }
+    
+
+   
+
+</style>
+
+    @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const outOfStockButtons = document.querySelectorAll("a[href*='ToggleOutOfStock']");
+
+                outOfStockButtons.forEach(button => {
+                    button.addEventListener("click", function (e) {
+                        e.preventDefault(); // Ngăn không cho chuyển trang ngay
+
+                        const url = this.getAttribute("href");
+                        const dishName = this.closest(".card-body").querySelector(".card-title").innerText.trim();
+
+                        // Tạo toast thông báo
+                        const toast = document.createElement("div");
+                        toast.className = "toast align-items-center text-white bg-success border-0 position-fixed top-0 end-0 m-3";
+                        toast.setAttribute("role", "alert");
+                        toast.setAttribute("aria-live", "assertive");
+                        toast.setAttribute("aria-atomic", "true");
+                        toast.innerHTML = `
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    Đã đánh dấu <strong>${dishName}</strong> là ${(this.innerText.includes("Hết") ? "hết món" : "còn món")}!
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                        `;
+                        document.body.appendChild(toast);
+
+                        // Hiển thị và tự động ẩn sau 2 giây
+                        const bsToast = new bootstrap.Toast(toast, { delay: 2000 });
+                        bsToast.show();
+
+                        // Chuyển trang sau 1.5 giây
+                        setTimeout(() => {
+                            window.location.href = url;
+                        }, 1500);
+                    });
+                });
+            });
+        </script>
+    }
+

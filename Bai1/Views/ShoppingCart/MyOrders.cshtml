@@ -1,0 +1,98 @@
+﻿@model Tuple<Bai1.Models.Order, List<Bai1.Models.Order>>
+
+@{
+    var newOrder = Model.Item1;
+    var oldOrders = Model.Item2;
+}
+
+<div class="container mt-4">
+
+    <!-- ĐƠN VỪA ĐẶT -->
+    <div class="card shadow-lg border-0 rounded-4 mb-5">
+        <div class="card-body">
+            <h3 class="text-success mb-4">
+                <i class="fas fa-cart-plus"></i> Đơn hàng vừa đặt
+            </h3>
+
+            @if (newOrder == null)
+            {
+                <p class="text-muted">Không có đơn hàng nào gần đây.</p>
+            }
+            else
+            {
+                <table class="table table-bordered table-hover rounded">
+                    <thead class="table-light">
+                        <tr>
+                            <th><i class="fas fa-receipt"></i> Mã đơn</th>
+                            <th><i class="fas fa-calendar-alt"></i> Ngày đặt</th>
+                            <th><i class="fas fa-money-bill-wave"></i> Tổng tiền</th>
+                            <th><i class="fas fa-credit-card"></i> Thanh toán</th>
+                            <th><i class="fas fa-info-circle"></i> Trạng thái</th>
+                            <th><i class="fas fa-eye"></i> Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-success">
+                            <td>@newOrder.Id</td>
+                            <td>@newOrder.OrderDate.ToLocalTime().ToString("dd/MM/yyyy HH\\:mm")</td>
+                            <td>@newOrder.TotalPrice.ToString("N0") VND</td>
+                            <td>@newOrder.PaymentMethod</td>
+                            <td>@newOrder.Status</td>
+                            <td>
+                                <a asp-action="OrderDetails" asp-route-id="@newOrder.Id" class="btn btn-outline-primary btn-sm rounded-pill">
+                                    <i class="fas fa-search"></i> Xem
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+
+    <!-- LỊCH SỬ ĐƠN HÀNG TRƯỚC -->
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body">
+            <h3 class="text-dark mb-4">
+                <i class="fas fa-history"></i> Lịch sử đơn hàng trước đó
+            </h3>
+
+            @if (!oldOrders.Any())
+            {
+                <p class="text-muted">Bạn chưa có đơn hàng nào trước đó.</p>
+            }
+            else
+            {
+                <table class="table table-bordered table-hover rounded">
+                    <thead class="table-light">
+                        <tr>
+                            <th><i class="fas fa-receipt"></i> Mã đơn</th>
+                            <th><i class="fas fa-calendar-alt"></i> Ngày đặt</th>
+                            <th><i class="fas fa-money-bill-wave"></i> Tổng tiền</th>
+                            <th><i class="fas fa-credit-card"></i> Thanh toán</th>
+                            <th><i class="fas fa-info-circle"></i> Trạng thái</th>
+                            <th><i class="fas fa-eye"></i> Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in oldOrders)
+                        {
+                            <tr>
+                                <td>@order.Id</td>
+                                <td>@order.OrderDate.ToLocalTime().ToString("dd/MM/yyyy HH\\:mm")</td>
+                                <td>@order.TotalPrice.ToString("N0") VND</td>
+                                <td>@order.PaymentMethod</td>
+                                <td>@order.Status</td>
+                                <td>
+                                    <a asp-action="OrderDetails" asp-route-id="@order.Id" class="btn btn-outline-dark btn-sm rounded-pill">
+                                        <i class="fas fa-search"></i> Xem
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>

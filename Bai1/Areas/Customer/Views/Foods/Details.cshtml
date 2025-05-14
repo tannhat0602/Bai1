@@ -1,0 +1,151 @@
+﻿@model Bai1.Models.Food
+@using Microsoft.AspNetCore.Html
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-warning text-dark">
+            <h3 class="mb-0">Món ăn có ngon không? Hãy để lại nhận xét!</h3>
+        </div>
+        <div class="card-body text-center">
+            <h4 class="card-title">@Model.Name</h4>
+            <p class="card-text"><strong>Price:</strong> @Model.Price</p>
+            <p class="card-text"><strong>Description:</strong> @Model.Description</p>
+
+            <div class="mb-3">
+                @DisplayImage(Model.ImageUrl, "Product Image")
+            </div>
+
+            @if (Model.ImageUrls?.Any() == true)
+            {
+                <div class="d-flex justify-content-center flex-wrap">
+                    @foreach (var imageUrl in Model.ImageUrls)
+                    {
+                        <div class="p-2">
+                            @DisplayImage(imageUrl, "Additional Product Image", "margin-top: 10px;")
+                        </div>
+                    }
+                </div>
+            }
+
+            <a href="@Url.Action("Details", "Store", new { area = "", id = Model.StoreId })" class="btn btn-secondary mt-4">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+
+
+            <!-- FORM ĐÁNH GIÁ + HIỂN THỊ REVIEW -->
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert" id="successToast">
+                    @TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @if (ViewBag.CanReview)
+            {
+                <h5 class="mt-5">Đánh giá món ăn</h5>
+
+                <form asp-action="AddReview" method="post">
+                    <input type="hidden" name="FoodId" value="@Model.Id" />
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Chọn số sao:</label>
+                        <div id="star-rating" class="d-flex gap-1 fs-3 text-warning justify-content-center">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <i class="bi bi-star" data-value="@i" style="cursor: pointer;"></i>
+                            }
+                        </div>
+                        <input type="hidden" name="Rating" id="ratingInput" required />
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="Comment">Bình luận:</label>
+                        <textarea name="Comment" class="form-control" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+                </form>
+            }
+            else
+            {
+                <p class="text-muted mt-5">Bạn phải đặt món ăn này trước khi có thể đánh giá.</p>
+            }
+
+
+            @if (ViewBag.Reviews != null)
+            {
+                <h5 class="mt-5">Các đánh giá trước đó</h5>
+                @foreach (var r in ViewBag.Reviews)
+                {
+                    <div class="border p-3 mb-2 rounded">
+                        <strong>@r.User?.UserName</strong> – @r.Rating ⭐ – @r.CreatedAt.ToString("dd/MM/yyyy")
+                        <p>@r.Comment</p>
+                        @if (!string.IsNullOrEmpty(r.PartnerReply))
+                        {
+                            <p class="text-muted"><strong>Phản hồi từ cửa hàng:</strong> @r.PartnerReply</p>
+                        }
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@functions {
+    private HtmlString DisplayImage(string url, string altText, string additionalStyle = "")
+    {
+        var style = $"width: 300px; height: auto; {additionalStyle}";
+        var imgTag = $"<figure class=\"text-center\"><img src=\"{url}\" alt=\"{altText}\" class=\"rounded shadow-sm\" style=\"{style}\" /><figcaption class=\"text-muted\">{altText}</figcaption></figure>";
+        return new HtmlString(imgTag);
+    }
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const stars = document.querySelectorAll('#star-rating i');
+            const ratingInput = document.getElementById('ratingInput');
+
+            stars.forEach((star, idx) => {
+                star.addEventListener('mouseover', () => {
+                    stars.forEach((s, i) => {
+                        s.classList.toggle('bi-star-fill', i <= idx);
+                        s.classList.toggle('bi-star', i > idx);
+                    });
+                });
+
+                star.addEventListener('click', () => {
+                    ratingInput.value = idx + 1;
+                });
+
+                star.addEventListener('mouseout', () => {
+                    const rating = parseInt(ratingInput.value) || 0;
+                    stars.forEach((s, i) => {
+                        s.classList.toggle('bi-star-fill', i < rating);
+                        s.classList.toggle('bi-star', i >= rating);
+                    });
+                });
+            });
+
+            // 🟢 Thêm đoạn xử lý ẩn thông báo sau 3 giây
+            const toast = document.getElementById('successToast');
+            if (toast) {
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    toast.classList.add('fade');
+                }, 3000);
+            }
+        });
+    </script>
+}
+

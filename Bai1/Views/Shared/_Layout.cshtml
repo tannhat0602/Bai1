@@ -1,0 +1,616 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+@using Microsoft.AspNetCore.Identity
+@using Bai1.Areas.Admin.Models
+
+<head>
+    <!-- Đặt đoạn này ở đầu <body> hoặc trong <head> -->
+    
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Foodie</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Bai1.styles.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+
+
+    <style>
+        .search-input {
+            display: none;
+            max-width: 200px;
+            margin-left: 10px;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .container {
+            min-height: 100%;
+            position: relative;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #f8f9fa; /* Màu nền footer */
+        }
+
+    </style>
+
+    <!-- Bong bóng chat đẹp -->
+    <style>
+        .chat-message {
+            display: flex;
+            margin: 10px 0;
+            align-items: flex-end;
+        }
+
+            .chat-message .avatar {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                margin: 0 8px;
+            }
+
+        .chat-bubble {
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 70%;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .chat-left {
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+
+            .chat-left .chat-bubble {
+                background-color: #f1f0f0;
+                color: #000;
+            }
+
+        .chat-right {
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+
+            .chat-right .chat-bubble {
+                background-color: #007bff;
+                color: #fff;
+            }
+    </style>
+
+    <style>
+        /* Base styles */
+        .chat-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+            border: 1px solid #ccc;
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            font-family: 'Segoe UI', sans-serif;
+            transition: background 0.3s, color 0.3s, border 0.3s;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .chat-header h5 {
+                margin: 0;
+                font-weight: bold;
+                font-size: 16px;
+                color: #333;
+            }
+
+        .chat-controls button {
+            border: none;
+            background: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #666;
+            margin-left: 6px;
+        }
+
+        .messages-list {
+            height: 250px;
+            overflow-y: auto;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            color: #000;
+            font-size: 14px;
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .chat-send {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            .chat-send:hover {
+                background-color: #0056b3;
+            }
+
+        /* DARK MODE SUPPORT */
+        
+
+        body.dark-mode .chat-header h5 {
+            color: #ddd;
+        }
+
+        body.dark-mode .chat-controls button {
+            color: #ccc;
+        }
+
+        body.dark-mode .messages-list {
+            background-color: #2a2a2a;
+            color: #fff;
+            border: 1px solid #555;
+        }
+
+        body.dark-mode .chat-input {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+        }
+
+        body.dark-mode .chat-send {
+            background-color: #0056b3;
+            color: white;
+        }
+        /* CSS cho chế độ tối */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+
+            body.dark-mode #chatBox {
+                background: linear-gradient(to bottom right, #2a2a2a, #1e1e1e);
+                border: 1px solid #555;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            body.dark-mode #messagesList {
+                background: #1e1e1e;
+                color: #eee;
+                border: 1px solid #444;
+            }
+
+            body.dark-mode input,
+            
+
+                body.dark-mode input::placeholder,
+                body.dark-mode #messageInput::placeholder {
+                    color: #aaa;
+                }
+
+            
+
+    </style>
+
+
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3" style="font-family: 'Roboto', sans-serif; background-color: #ffffff; color: #333;">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color: #00B14F; font-weight: bold; font-size: 1.5rem;">TTDFood</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index" style="font-size: 1.1rem;">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy" style="font-size: 1.1rem;">Privacy</a>
+                        </li>
+
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login" style="font-size: 1.1rem;">Food</a>
+                            </li>
+                        }
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Admin/PartnerRequest/Index" style="font-size: 1.1rem; color: #333;">Quản lý yêu cầu đối tác</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Admin/Admin/UploadBanner" style="font-size: 1.1rem; color: #333;">Upload Banner</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Admin/Categories" style="font-size: 1.1rem; color: #333;">Quản lý danh mục</a>
+                            </li>
+                        }
+                    </ul>
+
+                    <div class="d-flex align-items-center">
+                        <button id="searchToggle" class="btn btn-outline-secondary hover-effect" type="button">
+                            <i class="bi bi-search"></i>
+                        </button>
+
+                        <form class="d-flex align-items-center ms-2 search-form" method="get"
+                              asp-area="" asp-controller="Home" asp-action="Search">
+                            <input class="form-control search-input" type="text" placeholder="Tìm kiếm..." name="query" />
+
+                        </form>
+                        
+
+
+                        @{
+                            var currentUser = await UserManager.GetUserAsync(User);
+                            var userRoles = currentUser != null ? await UserManager.GetRolesAsync(currentUser) : new List<string>();
+                            var isPartner = userRoles.Contains("Partner");
+                            var isAdmin = userRoles.Contains("Admin");
+                            var isCustomer = userRoles.Contains("Customer");
+                        }
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (!isAdmin)
+                            {
+                                <form action="/ShoppingCart" method="get" class="ms-2">
+                                    <button class="btn btn-outline-dark hover-effect" type="submit">
+                                        <i class="bi-cart-fill me-1"></i>
+                                        
+                                    </button>
+                                </form>
+                            }
+
+                            <div class="dropdown ms-2">
+                                <button class="btn btn-outline-dark hover-effect" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-circle me-1 identity-icon"></i>
+                                @inject UserManager<ApplicationUser> UserManager
+                                    <span class="identity-name">
+                                        @User.Identity.Name
+                                        @{
+                                            var user = await UserManager.GetUserAsync(User);
+                                            var roles = user != null ? await UserManager.GetRolesAsync(user) : new List<string>();
+                                            var role = roles.FirstOrDefault() ?? "Không có vai trò";
+                                        }
+                                        <small style="font-size: 0.8rem; color: #888;">(@role)</small>
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Manage" style="color: #00B14F;">👤 Cập nhật tài khoản</a>
+                                    </li>
+                                    @if (isCustomer)
+                                    {
+                                        //<li>
+                                        //  <a class="dropdown-item" asp-area="Customer" asp-controller="Order" asp-action="History" style="color: #00B14F;">📝 Lịch sử đơn</a>
+                                        // </li>
+                                        <li>
+
+                                            <a class="dropdown-item" asp-area="Customer" asp-controller="Order" asp-action="History" style="color: #00B14F;">📝 Đơn hàng của tôi</a>
+
+
+                                        </li>
+                                    }
+                                    <li><hr class="dropdown-divider" /></li>
+
+
+
+                                    @if (isPartner)
+                                    {
+                                        <li>
+                                            <a class="dropdown-item" asp-area="Partner" asp-controller="Stores" asp-action="Index" style="color: #00B14F;">🏪 Cửa hàng của tôi</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="Partner" asp-controller="Orders" asp-action="Confirm" style="color: #00B14F;">✅ Xác nhận đơn hàng</a>
+                                        </li>
+                                    }
+
+                                    @if (isCustomer)
+                                    {
+                                        <li>
+                                            <a class="dropdown-item" asp-area="Customer" asp-controller="Customer" asp-action="RegisterPartner" style="color: #00B14F;">💼 Đăng ký thành đối tác</a>
+                                        </li>
+                                    }
+                                    @if (isAdmin)
+                                    {
+                                        <li>
+                                            <a class="dropdown-item" asp-area="Admin" asp-controller="PartnerStores" asp-action="Index" style="color: #00B14F;">🛠️ Quản lý cửa hàng đối tác</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="Admin" asp-controller="Account" asp-action="Index" style="color: #00B14F;">👥 Quản lý tài khoản</a>
+                                        </li>
+
+                                    }
+
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li>
+                                        <form asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm">
+                                            <button type="submit" class="dropdown-item" style="color: #00B14F;">🚪 Đăng xuất</button>
+                                        </form>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-primary ms-2" asp-area="Identity" asp-page="/Account/Login" style="color: #00B14F;">Đăng nhập</a>
+                            <a class="btn btn-outline-success ms-2" asp-area="Identity" asp-page="/Account/Register" style="color: #00B14F;">Đăng ký</a>
+                        }
+                    </div>
+
+                    <!-- Nút chuyển đổi Dark Mode -->
+                    <button onclick="toggleDarkMode()" id=" darkModeToggle" class="btn btn-outline-dark hover-effect" type="button">
+                        🌓
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3 flex-grow-1">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer style="position: relative; bottom: 0; width: 100%; text-align: center;">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 - Foodie</p>
+            <a href="@Url.Action("Privacy", "Home")" class="text-muted">Privacy</a>
+        </div>
+
+        <div class="container py-4" style="background-color: #f8f9fa; color: #212529;">
+            <div class="row">
+                <div class="col-md-6 text-start mb-3 mb-md-0">
+                    <h5>Tải ứng dụng của chúng tôi</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a href="https://apps.apple.com/vn/app/shopee-food/id123456789" target="_blank" class="mb-2">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" style="width: 160px; height: auto;">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.shopeefood" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="width: 160px; height: auto;">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 text-end">
+                    <p class="mb-0">&copy; Công ty TTDFood</p>
+                    <p class="mb-0">Địa chỉ: 22/7, Đường số 8, Tăng Nhơn Phú B, Thủ Đức, TPHCM</p>
+                    <p class="mb-0">Điện thoại liên hệ: (028) 12345678 | Email: cskh@support.ttdfood.vn</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+                $(document).ready(function () {
+            $("#searchToggle").click(function () {
+                $(".search-input, .search-button").toggle();
+                $(".search-input").focus();
+            });
+        });
+
+    </script>
+
+   
+
+
+    @RenderSection("Scripts", required: false)
+
+    <!-- Nút mở lại chat -->
+    <button id="openChatBtn" onclick="openChat()" style="display:none; position: fixed; bottom: 20px; right: 20px; z-index: 9998; border-radius: 20px; background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px;">
+        💬 Chat
+    </button>
+
+    <!-- Chat Box -->
+    <!-- Chat Box -->
+    <div id="chatBox" class="chat-box">
+        <div class="chat-header">
+            <h5>💬 Hỗ trợ trực tuyến</h5>
+            <div class="chat-controls">
+                <button onclick="minimizeChat()" title="Thu nhỏ">−</button>
+                <button onclick="closeChat()" title="Đóng">×</button>
+            </div>
+        </div>
+        <div id="messagesList" class="messages-list"></div>
+        <input type="text" id="userInput" placeholder="👤 Tên bạn..." class="chat-input" />
+        <input type="text" id="messageInput" placeholder="✍️ Nhập tin nhắn..." class="chat-input" />
+        <button onclick="sendMessage()" class="chat-send">🚀 Gửi</button>
+    </div>
+
+
+
+    <!-- SignalR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script type="text/javascript">
+        const connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
+
+        connection.on("ReceiveMessage", function (user, message) {
+            const messagesList = document.getElementById("messagesList");
+
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("chat-message");
+
+            const avatar = document.createElement("img");
+            avatar.src = "/images/avatar-bot.png"; // Đảm bảo hình ảnh có sẵn tại đường dẫn này
+            avatar.classList.add("avatar");
+
+            const bubble = document.createElement("div");
+            bubble.classList.add("chat-bubble");
+            bubble.textContent = message;
+
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(bubble);
+            messagesList.appendChild(messageDiv);
+            messageDiv.scrollIntoView({ behavior: "smooth" });
+        });
+
+        connection.start().catch(err => console.error(err.toString()));
+
+        function sendMessage() {
+            const user = document.getElementById("userInput").value;
+            const message = document.getElementById("messageInput").value;
+            if (!user || !message) return;
+
+            connection.invoke("SendMessage", user, message).catch(err => console.error(err.toString()));
+
+            const msg = document.createElement("div");
+            msg.innerHTML = `<strong style="color: #007bff;">${user}</strong>: ${message}`;
+            document.getElementById("messagesList").appendChild(msg);
+            msg.scrollIntoView();
+            document.getElementById("messageInput").value = "";
+        }
+
+        function minimizeChat() {
+            const chatBox = document.getElementById("chatBox");
+            const isMinimized = chatBox.getAttribute("data-minimized") === "true";
+            const elements = ["messagesList", "userInput", "messageInput"];
+            elements.forEach(id => document.getElementById(id).style.display = isMinimized ? "block" : "none");
+            chatBox.querySelector("button.btn").style.display = isMinimized ? "block" : "none";
+            chatBox.setAttribute("data-minimized", isMinimized ? "false" : "true");
+        }
+
+        function closeChat() {
+            document.getElementById("chatBox").style.display = "none";
+            document.getElementById("openChatBtn").style.display = "block";
+        }
+
+        function openChat() {
+            document.getElementById("chatBox").style.display = "block";
+            document.getElementById("openChatBtn").style.display = "none";
+        }
+    </script>
+    <script>
+        const chatBox = document.getElementById("chatBox");
+        const openChatBtn = document.getElementById("openChatBtn");
+
+        function openChat() {
+            chatBox.style.display = "block";
+            openChatBtn.style.display = "none";
+            localStorage.setItem("chatState", "open");
+        }
+
+        function closeChat() {
+            chatBox.style.display = "none";
+            openChatBtn.style.display = "block";
+            localStorage.setItem("chatState", "closed");
+        }
+
+        function minimizeChat() {
+            chatBox.style.display = "none";
+            openChatBtn.style.display = "block";
+            localStorage.setItem("chatState", "minimized");
+        }
+
+        // Khi trang tải lại, kiểm tra trạng thái từ localStorage
+        window.onload = function () {
+            const state = localStorage.getItem("chatState");
+            if (state === "open") {
+                chatBox.style.display = "block";
+                openChatBtn.style.display = "none";
+            } else if (state === "minimized" || state === "closed") {
+                chatBox.style.display = "none";
+                openChatBtn.style.display = "block";
+            } else {
+                // Lần đầu vào, hiển thị mặc định (có thể tùy chỉnh)
+                chatBox.style.display = "block";
+                openChatBtn.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        // Hàm chuyển chế độ tối và sáng
+        function toggleDarkMode() {
+            // Chuyển chế độ
+            const isDark = document.body.classList.toggle('dark-mode');
+
+            // Lưu trạng thái chế độ vào localStorage
+            localStorage.setItem('darkMode', isDark ? 'on' : 'off');
+        }
+
+        window.onload = function () {
+            const state = localStorage.getItem("chatState");
+            if (state === "open") {
+                chatBox.style.display = "block";
+                openChatBtn.style.display = "none";
+            } else if (state === "minimized" || state === "closed") {
+                chatBox.style.display = "none";
+                openChatBtn.style.display = "block";
+            } else {
+                chatBox.style.display = "block";
+                openChatBtn.style.display = "none";
+            }
+
+            // Khôi phục theme
+            const theme = localStorage.getItem("theme");
+            if (theme === "dark") {
+                document.body.classList.add("dark-mode");
+            }
+        }
+           // Kiểm tra trạng thái Dark Mode khi trang được load
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('darkMode') === 'on') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Bai1.Models.Category>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Category List</h1>
+
+<!-- Nút thêm danh mục -->
+<div class="text-end mb-3">
+	<a asp-action="Add" class="btn btn-primary">
+		<i class="bi bi-plus-circle"></i> Thêm Phân Loại
+	</a>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Category Name</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model != null && Model.Any()) // Kiểm tra danh sách có dữ liệu không
+		{
+			@foreach (var category in Model)
+			{
+				<tr>
+					<td>@category.Id</td>
+					<td>@category.Name</td>
+					<td>
+						<a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning">Edit</a>
+						<a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			}
+		}
+		else
+		{
+			<tr>
+				<td colspan="3" class="text-center">No categories available.</td>
+			</tr>
+		}
+	</tbody>
+</table>
+@section Scripts {
+	<!-- Chỉ chèn các script này vào view này -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+}
