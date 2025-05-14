@@ -7,16 +7,13 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Sao chép sln file và .csproj vào thư mục thích hợp
-COPY Bai1.sln ./
+# Sao chép file .csproj và restore
 COPY Bai1/Bai1.csproj Bai1/
-
-# Chạy dotnet restore trong thư mục của dự án
 WORKDIR /src/Bai1
 RUN dotnet restore
 
-# Sao chép toàn bộ mã nguồn và build
-COPY . ./
+# Sao chép toàn bộ mã nguồn và publish
+COPY . .
 RUN dotnet publish -c Release -o /app/publish
 
 # Stage 3: Runtime
