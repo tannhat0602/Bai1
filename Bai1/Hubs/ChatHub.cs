@@ -19,21 +19,35 @@ namespace Bai1.Hubs
         {
             try
             {
-                var apiKey = "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"; // Đảm bảo bạn sử dụng API key hợp lệ
+                // Đảm bảo bạn lấy đúng API key
+                var apiKey = "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"; // Hoặc lấy từ biến môi trường
+
+                // Thêm Authorization header vào HttpClient
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
-                // Cập nhật yêu cầu POST API mới
+                // Kiểm tra header Authorization đã được thêm đúng chưa
+                Console.WriteLine($"Authorization header: {_httpClient.DefaultRequestHeaders.Authorization}");
+
+                // Gửi yêu cầu POST API
                 var response = await _httpClient.PostAsJsonAsync("https://openrouter.ai/api/v1/chat/completions", new
                 {
-                    model = "gpt-3.5-turbo", // Chú ý thay đổi model
+                    model = "gpt-3.5-turbo", // Thay đổi model nếu cần
                     messages = new[]
                     {
-                        new { role = "system", content = "Bạn là trợ lý hỗ trợ cho website đặt thức ăn online." },
-                        new { role = "user", content = message }
-                    },
+                new { role = "system", content = "Bạn là trợ lý hỗ trợ cho website đặt thức ăn online." },
+                new { role = "user", content = message }
+            },
                     max_tokens = 300
                 });
 
+                // Kiểm tra mã trạng thái HTTP
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new InvalidOperationException($"API Error: {response.StatusCode} - {errorContent}");
+                }
+
+                // Đọc phản hồi
                 var result = await response.Content.ReadAsStringAsync();
                 Console.WriteLine($"API Response: {result}"); // Để kiểm tra toàn bộ phản hồi
 
@@ -48,10 +62,10 @@ namespace Bai1.Hubs
             }
             catch (Exception ex)
             {
-                // Ghi log hoặc in chi tiết lỗi để dễ dàng tìm hiểu nguyên nhân
                 Console.WriteLine($"Error in SendMessage: {ex.Message}");
                 await Clients.Caller.SendAsync("ReceiveMessage", "Bot", "Đã xảy ra lỗi trong quá trình xử lý. Vui lòng thử lại.");
             }
         }
+
     }
 }

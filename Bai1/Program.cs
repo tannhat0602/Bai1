@@ -1,6 +1,7 @@
 ﻿using Bai1.Hubs;
 using Bai1.Models;
 using Bai1.Repositories;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +27,9 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\keys"))  // Đảm bảo thư mục này tồn tại và có quyền truy cập
+    .SetApplicationName("MyApp");  // Đặt tên ứng dụng để phân biệt các khóa bảo vệ
 builder.Services.AddControllersWithViews();
 
 // PostgreSQL cho Render
