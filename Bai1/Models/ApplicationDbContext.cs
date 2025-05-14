@@ -49,12 +49,7 @@ namespace Bai1.Models
             modelBuilder.Entity<Order>()
                 .Property(o => o.Id)
                 .ValueGeneratedOnAdd(); // Đảm bảo Id tự động tăng và không nhận NULL
-            modelBuilder.Entity<PartnerRequest>(entity =>
-            {
-                entity.ToTable("PartnerRequests");
-
-                
-            });
+           
         }
         public DbSet<UserCartItem> UserCartItems { get; set; }
 
