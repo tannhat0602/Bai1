@@ -15,6 +15,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
     options.ReturnUrlParameter = "returnUrl";
 });
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IFoodRepository, EFFoodRepository>();
@@ -59,7 +60,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection(); // 🔁 Đừng bỏ dòng này
 
 }
-builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 app.UseStaticFiles();
 
