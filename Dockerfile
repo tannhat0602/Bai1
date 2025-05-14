@@ -1,21 +1,25 @@
-# Giai đoạn base để chạy ứng dụng
+# Stage 1: Base image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-# Giai đoạn build để build ứng dụng
+# Stage 2: Build
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 
-# Sao chép file .csproj và restore
-COPY *.csproj ./
+# Sao chép sln file và .csproj vào thư mục thích hợp
+COPY Bai1.sln ./
+COPY Bai1/Bai1.csproj Bai1/
+
+# Chạy dotnet restore trong thư mục của dự án
+WORKDIR /src/Bai1
 RUN dotnet restore
 
-# Sao chép toàn bộ code và publish
+# Sao chép toàn bộ mã nguồn và build
 COPY . ./
 RUN dotnet publish -c Release -o /app/publish
 
-# Giai đoạn final để chạy app đã publish
+# Stage 3: Runtime
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
