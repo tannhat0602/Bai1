@@ -62,7 +62,7 @@ namespace Bai1.Controllers
 
             // Cập nhật trạng thái yêu cầu và phê duyệt
             request.IsApproved = true;
-            request.ApprovalDate = DateTime.Now;
+            request.ApprovalDate = DateTime.Now.ToUniversalTime(); ;
             _context.Update(request);
 
             // Thêm vai trò "Partner" cho người dùng

@@ -50,7 +50,7 @@ namespace Bai1.Models
         [StringLength(500)]
         public string? Description { get; set; }
 
-        public DateTime RequestDate { get; set; } = DateTime.Now;
+        public DateTime RequestDate { get; set; } = DateTime.Now.ToUniversalTime();
 
         public bool IsApproved { get; set; } = false;
 

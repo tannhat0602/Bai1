@@ -450,7 +450,8 @@ namespace Bai1.Controllers
             if (ModelState.IsValid)
             {
                 discountCode.StoreId = store.Id;
-                discountCode.CreatedAt = DateTime.UtcNow;
+                discountCode.CreatedAt = DateTime.Now.ToUniversalTime();
+                ;
                 _context.DiscountCodes.Add(discountCode);
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = "Tạo mã giảm giá thành công!";
@@ -492,7 +493,8 @@ namespace Bai1.Controllers
             }
 
             var foodIds = store.Foods.Select(f => f.Id).ToList();
-            var now = DateTime.Now;
+            var now = DateTime.Now.ToUniversalTime();
+
 
             // ✅ Đã bỏ điều kiện "Đã giao"
             var query = _context.OrderDetails
