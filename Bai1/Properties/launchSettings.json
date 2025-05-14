@@ -13,7 +13,7 @@
             "commandName": "Project",
             "dotnetRunMessages": true,
             "launchBrowser": true,
-            "applicationUrl": "http://TTDFood.id.vn;http://localhost:5050",
+            "applicationUrl": "http://ttdfood.id.vn;http://localhost:5050",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }

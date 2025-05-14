@@ -46,6 +46,10 @@ namespace Bai1.Models
                 .Property(f => f.Url)
                 .HasColumnName("Url")
                 .HasColumnType("character varying");
+            modelBuilder.Entity<Order>()
+                .Property(o => o.Id)
+                .ValueGeneratedOnAdd(); // Đảm bảo Id tự động tăng và không nhận NULL
+
         }
         public DbSet<UserCartItem> UserCartItems { get; set; }
 
