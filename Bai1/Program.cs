@@ -59,6 +59,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection(); // 🔁 Đừng bỏ dòng này
 
 }
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 app.UseStaticFiles();
 
@@ -79,6 +80,5 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://*:{port}"); // Đảm bảo app lắng nghe đúng port Render cấp
 
 app.Run();
